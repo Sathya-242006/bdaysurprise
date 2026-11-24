@@ -1,0 +1,244 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-handwriting: "Caveat", cursive;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    min-height: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  button {
+    cursor: pointer;
+  }
+}
+
+/* Candle flame organic flicker */
+@keyframes flame-flicker {
+  0%,
+  100% {
+    transform: translateX(-50%) scale(1, 1) rotate(-1.5deg);
+    opacity: 0.96;
+  }
+  25% {
+    transform: translateX(-50%) scale(1.06, 0.95) rotate(2deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(-50%) scale(0.94, 1.08) rotate(-2deg);
+    opacity: 0.92;
+  }
+  75% {
+    transform: translateX(-50%) scale(1.04, 0.98) rotate(1.5deg);
+    opacity: 1;
+  }
+}
+
+@keyframes flame-halo {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.72;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.18);
+    opacity: 0.95;
+  }
+}
+
+/* Ambient floating elements (compositor-only transform & opacity) */
+@keyframes float-up-gentle {
+  0% {
+    transform: translate3d(0, 108vh, 0) rotate(0deg) scale(0.85);
+    opacity: 0;
+  }
+  12% {
+    opacity: var(--particle-opacity, 0.75);
+  }
+  85% {
+    opacity: var(--particle-opacity, 0.75);
+  }
+  100% {
+    transform: translate3d(var(--drift-x, 28px), -12vh, 0) rotate(var(--spin-deg, 25deg)) scale(1.05);
+    opacity: 0;
+  }
+}
+
+@keyframes petal-fall {
+  0% {
+    transform: translate3d(0, -10vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  12% {
+    opacity: var(--particle-opacity, 0.85);
+  }
+  50% {
+    transform: translate3d(var(--drift-x, 45px), 48vh, 0) rotate(140deg);
+  }
+  88% {
+    opacity: var(--particle-opacity, 0.85);
+  }
+  100% {
+    transform: translate3d(calc(var(--drift-x, 45px) * -0.5), 108vh, 0) rotate(290deg);
+    opacity: 0;
+  }
+}
+
+@keyframes twinkle-star {
+  0%,
+  100% {
+    transform: scale(0.75);
+    opacity: 0.35;
+  }
+  50% {
+    transform: scale(1.22);
+    opacity: 1;
+  }
+}
+
+@keyframes soft-glow-pulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 14px rgba(255, 200, 230, 0.55))
+      drop-shadow(0 0 32px rgba(244, 114, 182, 0.35));
+  }
+  50% {
+    filter: drop-shadow(0 0 22px rgba(253, 224, 71, 0.75))
+      drop-shadow(0 0 46px rgba(244, 114, 182, 0.6));
+  }
+}
+
+@keyframes moon-float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-flame {
+  animation: flame-flicker 1.15s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+.animate-flame-halo {
+  animation: flame-halo 1.8s ease-in-out infinite;
+}
+
+.animate-float-up {
+  animation: float-up-gentle var(--duration, 12s) linear var(--delay, 0s) infinite;
+  will-change: transform, opacity;
+}
+
+.animate-petal-fall {
+  animation: petal-fall var(--duration, 11s) ease-in-out var(--delay, 0s) infinite;
+  will-change: transform, opacity;
+}
+
+.animate-twinkle {
+  animation: twinkle-star var(--duration, 3.2s) ease-in-out var(--delay, 0s) infinite;
+  will-change: transform, opacity;
+}
+
+.animate-birthday-glow {
+  animation: soft-glow-pulse 2.8s ease-in-out infinite;
+}
+
+.animate-moon-float {
+  animation: moon-float 5.5s ease-in-out infinite;
+}
+
+/* Soft feathered radial mask so 3D bunny illustrations blend seamlessly into pastel gardens */
+.bunny-feathered-mask {
+  -webkit-mask-image: radial-gradient(ellipse 74% 78% at 50% 50%, #000 60%, rgba(0, 0, 0, 0.85) 75%, transparent 98%);
+  mask-image: radial-gradient(ellipse 74% 78% at 50% 50%, #000 60%, rgba(0, 0, 0, 0.85) 75%, transparent 98%);
+}
+
+/* 3D envelope utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+@keyframes butterfly-wing {
+  0%,
+  100% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(0.32);
+  }
+}
+
+@keyframes gentle-bob {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes heart-radiance {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 22px rgba(244, 114, 182, 0.55))
+      drop-shadow(0 0 54px rgba(251, 113, 133, 0.35));
+  }
+  50% {
+    transform: scale(1.06);
+    filter: drop-shadow(0 0 34px rgba(244, 114, 182, 0.85))
+      drop-shadow(0 0 76px rgba(253, 224, 71, 0.45));
+  }
+}
+
+.animate-butterfly-wing {
+  animation: butterfly-wing 0.38s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.animate-gentle-bob {
+  animation: gentle-bob 3.6s ease-in-out infinite;
+}
+
+.animate-heart-radiance {
+  animation: heart-radiance 2.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-flame,
+  .animate-flame-halo,
+  .animate-float-up,
+  .animate-petal-fall,
+  .animate-twinkle,
+  .animate-birthday-glow,
+  .animate-moon-float,
+  .animate-butterfly-wing,
+  .animate-gentle-bob,
+  .animate-heart-radiance {
+    animation: none !important;
+  }
+}

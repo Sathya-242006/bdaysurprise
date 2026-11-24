@@ -1,0 +1,6 @@
+{
+  "name": "A Little World of Happiness – VINU",
+  "description": "A dreamy, interactive animated birthday surprise experience created especially for Vinu, featuring clickable birthday candles, a 3D bunny flower bouquet, an opening handwritten letter, and a midnight fireworks celebration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
